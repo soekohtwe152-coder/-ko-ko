@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Contact Us - Funzy Restaurant</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-yellow: #ffcc00;
+            --accent-orange: #ff9900;
+            --text-dark: #222;
+            --text-gray: #666;
+            --bg-light: #fcfcfc;
+            --transition: all 0.3s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #FFFDD0;color: var(--text-dark); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- 1. Header & Navigation (Unified Style) --- */
+        header {
+            background: white; padding: 12px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; text-transform: uppercase; color: #222; text-decoration: none; }
+        .logo span { color: var(--accent-orange); }
+       /* Basic nav style */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    color: black;
+}
+
+.nav-links a:hover{
+    color: #FF6B35;
+}
+
+/* Dropdown menu hidden by default */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    list-style: none;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Dropdown items */
+.dropdown-menu li a {
+    padding: 10px;
+    color: black;
+}
+
+.dropdown-menu li a:hover {
+    background: #f2f2f2;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+        /* --- 2. Page Header --- */
+        .page-header {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), 
+                        url('Modern\ kitchen\ interior\ with\ professional\ equipment\ in\ restaurant.jpg');
+            background-size: cover; background-position: center; height: 400px; display: flex; align-items: center; justify-content: center;
+            display: flex; align-items: center; color: white; text-align: center;
+        }
+        .page-header h1 { font-family: 'Montserrat'; font-size: clamp(2rem, 5vw, 3rem); width: 100%; font-weight: 700; }
+
+        /* --- 3. Contact Content --- */
+        .contact-section { padding: 80px 0; }
+        .contact-wrapper { 
+            display: grid; 
+            grid-template-columns: 1fr 1.5fr; 
+            gap: 40px; 
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+
+        .contact-wrapper h2{
+            color: #ff9900;;
+        }
+
+        .contact-info h2, .contact-form h2 { margin-bottom: 30px; font-family: 'Montserrat'; font-weight: 700; font-size: 28px; }
+        .info-card { background: #fffdf5; padding: 25px; border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--primary-yellow); transition: 0.3s; }
+        .info-card:hover { transform: translateX(10px); background: #fff9e6; }
+        .info-card h4 { color: var(--accent-orange); margin-bottom: 8px; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+        .info-card p { color: var(--text-gray); font-size: 14px; font-weight: 400; }
+
+        /* --- Form Styling --- */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #444; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 14px; border: 1px solid #eee; background: #f9f9f9; border-radius: 10px; font-family: inherit; outline: none; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary-yellow); background: white; box-shadow: 0 0 10px rgba(255, 204, 0, 0.1); }
+        .form-group textarea { height: 140px; resize: none; }
+        
+        .btn-submit {
+            background: #111; color: white; border: none; padding: 16px; border-radius: 10px;
+            font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn-submit:hover { background: var(--primary-yellow); color: #111; transform: translateY(-3px); }
+
+        /* --- Google Map Section --- */
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            border: 8px solid white;
+        }
+        .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+        /* --- 4. Footer & Social --- */
+        .site-footer { background: #111; color: white; padding: 70px 0 20px; position: relative; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-col h4 { margin-bottom: 25px; font-size: 18px; border-bottom: 2px solid var(--primary-yellow); display: inline-block; padding-bottom: 5px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li a { color: #aaa; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .footer-col ul li a:hover { color: var(--primary-yellow); padding-left: 5px; }
+        
+        .footer-bottom { text-align: center; border-top: 1px solid #222; margin-top: 50px; padding-top: 25px; color: #777; font-size: 13px; }
+
+        .footer-social-icons {
+            position: absolute; bottom: 25px; right: 30px; display: flex; gap: 12px;
+        }
+        .social-icon {
+            display: flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; background: #222; color: white;
+            border-radius: 50%; text-decoration: none; font-size: 18px; transition: 0.3s; border: 1px solid #333;
+        }
+        .social-icon:hover { transform: translateY(-5px); background: var(--primary-yellow); color: #111; border-color: var(--primary-yellow); }
+
+        @media (max-width: 992px) {
+            .contact-wrapper { grid-template-columns: 1fr; padding: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            
+            .form-grid { grid-template-columns: 1fr; }
+            .footer-social-icons { right: 50%; transform: translateX(50%); bottom: 15px; }
+            .footer-bottom { padding-bottom: 60px; }
+        }
+
+      input{
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        box-sizing: border-box;
+        transform: border-color 0.3s;
+
+        }
+
+        .order-btn{
+            width: 100%;
+            padding: 12px;
+            background-color:#111;
+            color: white;
+            border:none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+         .order-btn:hover { background: var(--primary-yellow); color: #111; }
+
+        .modal-overlay{
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.05);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay:target{
+            display: flex;
+        }
+
+        .modal-content{
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            animation: fadeln 0.3s;
+        }
+
+        .close-btn{
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 25px;
+            background:#FF6B35;
+            color: white;
+            text-decoration:none;
+            border-radius: 5px;
+        }
+
+        @keyframes fadeln{
+            from{
+                opacity: 0; transform: translateY(-20px);
+            }
+            to{opacity: 1; transform: translateY(0);}
+        }
+
+        input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+
+.order-btn1 {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+.modal-overlay1 {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-overlay1:target {
+    display: flex;
+}
+
+.modal-content1 {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s;
+}
+
+.close-btn1 {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 25px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer-col input{
+    width: 40%;
+}
+
+.footer-col button{
+    width: 15%;
+}
+    </style>
+</head>
+<body>
+
+   <header>
+    <div class="container">
+        <nav class="main-nav">
+            <a href="#" class="logo">Funzy<span>Restaurant</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a href="#">Menu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="seafood.html">Seafood</a></li>
+                          <li><a href="spicy.html">Spicy</a></li>
+                        <li><a href="juice.html">Juice</a></li>
+                        <li><a href="ice-cream.html">Ice-Cream</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="promotion.html">Promotion</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about us.html">About us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Contact Us</h1>
+        </div>
+    </section>
+
+    <div class="container contact-section">
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                
+                <div class="info-card">
+                    <h4><i class="fa-solid fa-location-dot"></i> Location</h4>
+                    <p>No. 123, Pone Kyun Ward, ThaMaDi Street,<br>Dawei, Myanmar</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4><i class="fa-solid fa-phone"></i> Phone</h4>
+                    <p>+95 9 663344112</p>
+                    <p>+95 9 778899112</p>
+                </div>
+                
+                <div class="info-card">
+                    <h4><i class="fa-solid fa-envelope"></i> Email</h4>
+                    <p>Soekohtwe@gmail.com</p>
+                    <p>support@funzyfresh.com</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2>Send a Message</h2>
+                <form action="#confirm-box">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" placeholder="How can we help you?">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="order-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61156.442938833!2d98.1747879!3d14.0792825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e4618a38c2079b%3A0x6e7887550e64f89!2sDawei!5e0!3m2!1sen!2smm!4v1711970000000!5m2!1sen!2smm" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <div id="confirm-box" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Message Receieved!</h3>
+            <p>Our team will get reply to you within 24 hours.</p>
+            <a href="#" class="close-btn">OK</a>
+        </div>
+    </div>
+
+   <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="color:white;">Funzy<span></span></div>
+                    <p style="margin-top: 15px; font-size: 14px; color: #aaa;">Organic and healthy groceries delivered to your doorstep.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                       <li><a href="index.html">Home</a></li>
+                <li><a href="promotion.html">Promotion</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about us.html">About us</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-col">
+                    <form action="#confirm-box1">
+                    <h4>Newsletter</h4>
+                    <div style="display: flex; gap: 5px;">
+                        <input type="email" placeholder="Your email" style="padding: 10px; border-radius: 5px; border:none; flex:1;" required>
+                        <button type="submit" class="order-btn1" style="padding: 10px; background:var(--primary-yellow); border:none; border-radius:5px; font-weight:bold;">Join</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Funzy Fresh Grocery. All Rights Reserved.| Designed by Soe Ko Htwe.</p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <div id="confirm-box1" class="modal-overlay1">
+    <div class="modal-content1">
+        <h3>Message Receieved!</h3>
+        <p>Thank you for subscribing.</p>
+        <a href="#" class="close-btn1">OK</a>
+    </div>
+</div>
+
+</body>
+</html>
